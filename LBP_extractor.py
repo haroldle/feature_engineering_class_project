@@ -35,6 +35,7 @@ def createLBPData(path, output, bufSize, method):
     # CONVERT LABELS' NAME INTO NUMERIC FORMAT
     labels = le.fit_transform(labels)
     # PERFORM LBP FOR EACH VARIATION TO THE DATASET
+    os.mkdir(output + f'/{method}')
     for numPoints, radius in tqdm(LBP_extractors):
         lbp_points = numPoints + numPoints * (numPoints - 2) + 3
         print(lbp_points)
@@ -42,7 +43,7 @@ def createLBPData(path, output, bufSize, method):
             lbp_points = numPoints + 2
         # CREATE HDF5 FILE TO STORE THE LBP FEATURES
         dataset = HDF5DatasetWriter((len(path), lbp_points),
-                                    output + f"/LBP_{method}_{numPoints}",
+                                    output + f'/{method}' + f"/LBP_{method}_{numPoints}",
                                     dataKey=f"features",
                                     buffSize=bufSize)
         # STORE THE LABELS' NAMES INTO HDF5
