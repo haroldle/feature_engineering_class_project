@@ -13,7 +13,7 @@ def main():
 
     imagePaths = list(paths.list_images(args["dataset"]))
     random.shuffle(imagePaths)
-    # LBP_extractor.createLBPData(imagePaths, args["OUTPUT"], 32, "uniform")
+    LBP_extractor.createLBPData(imagePaths, args["OUTPUT"], 32, "uniform")
     LBP_extractor.createLBPData(imagePaths, args["OUTPUT"], 32, "nri_uniform")
 
 
